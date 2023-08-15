@@ -6,6 +6,8 @@ import Swal from 'sweetalert2'
 // import withReactContent from "sweetalert2-react-content"
 
 const Show = () => {
+    //Declarar valor total
+    const [valorTotal, setValorTotal] = useState(0)
     //Configurar hooks
     const [registros, setRegistros] = useState([])
     //Referenciar a la base de datos de firestore
@@ -17,8 +19,21 @@ const Show = () => {
         setRegistros(
             data.docs.map((doc) => ({...doc.data(), id:doc.id}))
         )
-        // console.log(registros)
     }
+    //Acumular o restar los montos de cada documento hacia el valor total
+    const [valores, setValores] = useState([1, 2, 3, 4, 5]);
+    const [suma, setSuma] = useState(0);
+
+    useEffect(() => {
+        const nuevaSuma = registros.reduce((acc, objeto) => {
+          if (objeto.gasto) {
+            return acc - parseFloat(objeto.monto);
+          } else {
+            return acc + parseFloat(objeto.monto);
+          }
+        }, 0);
+        setValorTotal(nuevaSuma);
+      }, [registros]);
     //Función para eliminar un doc
     const deleteRegistro = async (id) => {
         const registroDoc = doc(db, "registros", id)
@@ -49,9 +64,30 @@ const Show = () => {
     useEffect(() => {
         getRegistros()
     }, [])
+    const [contador, setContador] = useState(0);
+
+    useEffect(() => {
+        document.title = `Contador: ${valorTotal}`;
+        // Este efecto se ejecuta cuando el componente se monta y cada vez que contador cambie.
+        // También, se ejecutará una vez antes de que el componente se desmonte.
+    
+        return () => {
+        //   setValorTotal(0)
+        };
+      }, [valorTotal]);
     //Devolver vista del componente
     return (
         <>
+        {/* <button onClick={() => setValorTotal(valorTotal + 1)}>Incrementar</button> */}
+        <div className='title'>
+            <h1>Bienvenido nuevamente, <span>Usuario</span></h1>
+            </div>
+            <div className='money-info'>
+                <h2>Dinero total</h2>
+                <h3 id='mainValue'>{valorTotal}</h3>
+            </div>
+            <div className='registros-info'>
+        </div>
         <div className='container' style={{paddingTop:"20px"}}>
             <div className='row'>
                 <div className='col'>
@@ -77,7 +113,7 @@ const Show = () => {
                                         :
                                         <td style={{color: "green"}}>{registro.monto}</td>
                                     }
-                                    
+
                                     <td>
                                         <Link to={`/edit/${registro.id}`} className='btn btn-light' style={{fontSize:"15px", marginRight: "10px", backgroundColor: "#167a56"}}><i className="fa-regular fa-pen-to-square"></i></Link>
                                         <button onClick={() => {confirmDelete(registro.id)}} className='btn btn-danger' style={{fontSize: "15px"}}><i className="fa-solid fa-trash"></i></button>
