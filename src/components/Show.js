@@ -56,7 +56,7 @@ const Show = () => {
             <div className='row'>
                 <div className='col'>
                     <div className=' gap-2'>
-                        <Link to="/create" className='btn btn-secondary mt-2 mb-2' style={{fontSize:"20px", backgroundColor: "#167a56"}}>Create <i className="fa-solid fa-plus"></i></Link>
+                        <Link to="/create" className='btn btn-secondary mt-2 mb-2' style={{fontSize:"20px", backgroundColor: "#167a56"}}>Crear <i className="fa-solid fa-plus"></i></Link>
                     </div>
                     <table className='table table-bordered' style={{marginTop: "20px",border: "4px #167a56 solid", borderCollapse: "collapse"}}>
                         <thead>
