@@ -28,20 +28,19 @@ const Show = () => {
     //Función para confirmar con sweet alert 2
     const confirmDelete = (id) => {
         Swal.fire({
-            title: 'Remover el registroo?',
-            text: "Está seguro de eliminar el registroo?",
+            title: 'Confirmar',
+            text: "¿Está seguro de eliminar el registro?",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Sí, borrar'
           }).then((result) => {
             if (result.isConfirmed) {
                 deleteRegistro(id)
                 Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
+                    'Registro borrado!',
+                    // 'Your file has been deleted.',
                 )
             }
           })
@@ -53,30 +52,35 @@ const Show = () => {
     //Devolver vista del componente
     return (
         <>
-        <div className='container'>
+        <div className='container' style={{paddingTop:"20px"}}>
             <div className='row'>
                 <div className='col'>
-                    <div className='d-grid gap-2'>
-                        <Link to="/create" className='btn btn-secondary mt-2 mb-2'>Create</Link>
+                    <div className=' gap-2'>
+                        <Link to="/create" className='btn btn-secondary mt-2 mb-2' style={{fontSize:"20px", backgroundColor: "#167a56"}}>Create <i className="fa-solid fa-plus"></i></Link>
                     </div>
-                    <table className='table table-dark table-hover'>
+                    <table className='table table-bordered' style={{marginTop: "20px",border: "4px #167a56 solid", borderCollapse: "collapse"}}>
                         <thead>
-                            <tr>
+                            <tr style={{fontSize: "25px"}}>
                                 <th>Fecha</th>
                                 <th>Descripción</th>
                                 <th>Monto</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody style={{fontSize: "18px"}}>
                             {registros.map((registro) => (
                                 <tr key={registro.id}>
                                     <td>{registro.fecha}</td>
                                     <td>{registro.descripcion}</td>
-                                    <td>{registro.monto}</td>
+                                    {
+                                        registro.gasto ? <td style={{color: "red"}}>{registro.monto}</td>
+                                        :
+                                        <td style={{color: "green"}}>{registro.monto}</td>
+                                    }
+                                    
                                     <td>
-                                        <Link to={`/edit/${registro.id}`} className='btn btn-light'><i className="fa-regular fa-pen-to-square"></i></Link>
-                                        <button onClick={() => {confirmDelete(registro.id)}} className='btn btn-danger'><i className="fa-solid fa-trash"></i></button>
+                                        <Link to={`/edit/${registro.id}`} className='btn btn-light' style={{fontSize:"15px", marginRight: "10px", backgroundColor: "#167a56"}}><i className="fa-regular fa-pen-to-square"></i></Link>
+                                        <button onClick={() => {confirmDelete(registro.id)}} className='btn btn-danger' style={{fontSize: "15px"}}><i className="fa-solid fa-trash"></i></button>
                                     </td>
                                 </tr>
                             ))}

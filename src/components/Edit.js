@@ -40,59 +40,79 @@ const Edit = () => {
         // eslint-disable-next-line
     }, [])
 
+    const miEstilo = {
+        color: 'white',
+        border: '4px white solid',
+        width: "400px",
+        padding: "10px",
+        paddingTop: "20px"
+      };
     return (
-        <div className='container'>
-        <div className='row'>
-            <div className='col'>
-                <h1>Editar registro</h1>
-                 <form onSubmit={update}>
-                    <div className='mb-3'>
-                        <label className='form-label'>Fecha</label>
-                        <input
-                            value={fecha}
-                            onChange={ (e) => setFecha(e.target.value)} 
-                            type="date"
-                            className='form-control'
-                        />
-                    </div>
-                    <div className='mb-3'>
-                        <label className='form-label'>Description</label>
-                        <input
-                            value={descripcion}
-                            onChange={ (e) => setDescripcion(e.target.value)} 
-                            type="text"
-                            className='form-control'
-                        />
-                    </div>  
-                    <div className='mb-3'>
-                        <label className='form-label'>Monto</label>
-                        <input
-                            value={monto}
-                            onChange={ (e)=> setMonto(e.target.value)} 
-                            type="number"
-                            className='form-control'
-                        />                 
-                    </div>  
-                    <div className='mb-3'>
-                        <label className='form-label'>Gasto</label>
-                        {gasto ? <input
-                            value={gasto}
-                            onChange={ (e)=> setGasto(!gasto)} 
-                            type="checkbox"
-                            checked
-                        />:
-                        <input
-                        value={gasto}
-                        onChange={ (e)=> setGasto(!gasto)} 
-                        type="checkbox"
-                        />  
-                        }                
-                    </div>
-                    <button type='submit' className='btn btn-primary'>Update</button>
-                 </form>   
+        <div className='container' style={miEstilo}>
+            <div className='row'>
+                <div className='col'>
+                    <h1 >Editar registro</h1>
+                    <form onSubmit={update} style={{fontSize:"20px"}}>
+                        <div className='mb-3' >
+                            <label className='form-label' >Fecha</label> <br/>
+                            <input
+                                style={{width: "240px", border: "2px black solid", borderRadius:"5px"}}
+                                value={fecha}
+                                onChange={ (e) => setFecha(e.target.value)}
+                                type='date'
+                                autoFocus
+                                // className='form-control'
+                            />
+                        </div>
+                        <div className='mb-3'>
+                            <label className='form-label'>Descripción</label> <br/>
+                            <input
+                                style={{width: "240px", border: "2px black solid", borderRadius:"5px"}}
+                                value={descripcion}
+                                onChange={ (e) => setDescripcion(e.target.value)}
+                                type='text'
+                                // className='form-control'
+                            />
+                        </div>
+                        <div className='mb-3'>
+                            <label className='form-label'>Monto</label> <br/>
+                            <input
+                                style={{width: "100px", border: "2px black solid", borderRadius:"5px"}}
+
+                                value={monto}
+                                onChange={ (e) => setMonto(e.target.value)}
+                                type='number'
+                                // className='form-control'
+                            />
+                        </div>
+                        <div className='mb-3'>
+                            <label className='form-label' style={{paddingRight:"10px"}}>Gasto</label>
+                            {
+                                gasto ? <input
+                                style={{width:"20px", height:"20px", paddingTop:"25px", border: "2px black solid"}}
+                                value={gasto}
+                                onChange={ (e) => setGasto(!gasto)}
+                                type='checkbox'
+                                checked
+                                // className='form-control'
+                            /> :
+                            <input
+                                style={{width:"20px", height:"20px", paddingTop:"25px", border: "2px black solid"}}
+                                value={gasto}
+                                onChange={ (e) => setGasto(!gasto)}
+                                type='checkbox'
+                                // className='form-control'
+                            />
+                            }
+                            
+                        </div>
+                        <button type='submit' className='btn btn-primary' style={{fontSize: "20px", backgroundColor:"#167a56"}}>Actualizar</button>
+                    </form>
+
+                </div>
             </div>
+
         </div>
-    </div> 
     )
 }
 

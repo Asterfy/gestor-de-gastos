@@ -1,13 +1,51 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 50px;
+  font-family: 'Courier New';
+  padding: 50px;
+  background-image: linear-gradient(to right, #1d4146, #0e4b17);
+  /* Otros estilos para el cuerpo de la página */
+  
+}
+.title h1{
+  text-align: center;
+  font-size: 45px;
+  color: white;
+}
+.title span{
+  color: lightseagreen;
+}
+.money-info{
+  border: 2px white solid;
+  border-radius: 5px;
+  width: 280px;
+  text-align: center;
+  padding: 10px;
+  margin: 20px;
+  background-color: #167a56;
+  position: relative;
+  left: 200px; /* Mueve el elemento 20px a la derecha */
+  top: 10px;
+
+}
+.money-info h2{
+  color: white;
+  padding-top: 10px;
+  font-size: 30px;
+}
+.money-info h3{
+  font-size: 40px;
+  color: white;
+}
+.registros-info  h2{
+  font-size: 35px;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  text-transform: uppercase;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
